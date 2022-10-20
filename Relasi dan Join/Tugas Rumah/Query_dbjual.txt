@@ -1,23 +1,23 @@
-//inner join
+/*inner join*/
 SELECT *
 FROM costumer INNER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id;
 
-//right outer join
+/*right outer join*/
 SELECT *
 FROM costumer LEFT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id;
 
-//left outer join
+/*left outer join*/
 SELECT *
 FROM costumer RIGHT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id;
 
-//union
+/*union*/
 SELECT *
 FROM costumer RIGHT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id
 UNION
 SELECT *
 FROM costumer LEFT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id;
 
-//union all
+/*union all*/
 SELECT *
 FROM costumer RIGHT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id
 UNION ALL
