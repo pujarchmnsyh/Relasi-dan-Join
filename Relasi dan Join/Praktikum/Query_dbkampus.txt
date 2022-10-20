@@ -1,0 +1,34 @@
+//implisit satu
+SELECT COUNT(distinct t_mhs.nim) AS "mahasiswa yang mengambil matkul" 
+FROM t_mhs, t_ambil_mk WHERE t_mhs.nim = t_ambil_mk.nim;
+
+//eksplisit satu
+SELECT COUNT(distinct t_mhs.nim) AS "mahasiswa yang mengambil matkul" 
+FROM t_mhs INNER JOIN t_ambil_mk ON t_mhs.nim = t_ambil_mk.nim;
+
+//kedua
+SELECT t_mhs.jenis_kelamin, COUNT(t_mhs.jenis_kelamin) AS jumlah 
+FROM t_mhs LEFT OUTER JOIN t_ambil_mk ON t_mhs.nim = t_ambil_mk.nim 
+WHERE t_ambil_mk.nim IS NULL
+GROUP BY t_mhs.jenis_kelamin;
+
+//implisit tiga
+SELECT t_mhs.nim, t_mhs.nama, t_mk.kode_mk, t_mk.nama_mk
+FROM t_mhs, t_mk, t_ambil_mk
+WHERE t_mhs.nim = t_ambil_mk.nim AND t_ambil_mk.kode_mk = t_mk.kode_mk;
+
+//eksplisit tiga
+SELECT t_mhs.nim, t_mhs.nama, t_mk.kode_mk, t_mk.nama_mk
+FROM t_mhs INNER JOIN t_ambil_mk
+ON t_mhs.nim = t_ambil_mk.nim INNER JOIN t_mk ON t_ambil_mk.kode_mk = t_mk.kode_mk;
+
+//keempat
+SELECT t_mhs.nim, t_mhs.nama, SUM(t_mk.sks) AS jumlah_sks
+FROM t_mhs INNER JOIN t_ambil_mk
+ON t_mhs.nim = t_ambil_mk.nim INNER JOIN t_mk ON t_ambil_mk.kode_mk = t_mk.kode_mk
+GROUP BY t_mhs.nama HAVING SUM(t_mk.sks)>4 AND SUM(t_mk.sks)<10;
+
+//kelima
+SELECT t_mk.kode_mk, t_mk.nama_mk, t_mk.sks, t_mk.semester
+FROM t_mk LEFT OUTER JOIN t_ambil_mk
+ON t_ambil_mk.kode_mk = t_mk.kode_mk LEFT OUTER JOIN t_mhs ON t_mhs.nim = t_ambil_mk.nim WHERE t_mhs.nim IS NULL;

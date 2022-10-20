@@ -1,0 +1,25 @@
+//inner join
+SELECT *
+FROM costumer INNER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id;
+
+//right outer join
+SELECT *
+FROM costumer LEFT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id;
+
+//left outer join
+SELECT *
+FROM costumer RIGHT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id;
+
+//union
+SELECT *
+FROM costumer RIGHT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id
+UNION
+SELECT *
+FROM costumer LEFT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id;
+
+//union all
+SELECT *
+FROM costumer RIGHT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id
+UNION ALL
+SELECT *
+FROM costumer LEFT OUTER JOIN orderss ON costumer.coustumer_id = orderss.costumer_id;
